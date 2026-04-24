@@ -1,0 +1,68 @@
+<!-- templates/fragments/sidebar.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="sidebar" th:fragment="sidebar">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <!-- Student Menu -->
+            <li th:if="${user.role.name() == 'STUDENT'}">
+                <div class="small text-muted px-3 mb-2">STUDENT MENU</div>
+                <a class="nav-link" th:classappend="${currentPage == 'student-dashboard' ? 'active' : ''}"
+                   href="/student/dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a class="nav-link" th:classappend="${currentPage == 'file' ? 'active' : ''}"
+                   href="/student/file">
+                    <i class="fas fa-plus-circle"></i> File Grievance
+                </a>
+            </li>
+
+            <!-- Staff Menu -->
+            <li th:if="${user.role.name() == 'STAFF'}">
+                <div class="small text-muted px-3 mb-2">STAFF MENU</div>
+                <a class="nav-link" th:classappend="${currentPage == 'staff-dashboard' ? 'active' : ''}"
+                   href="/staff/dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+
+            <!-- HOD Menu -->
+            <li th:if="${user.role.name() == 'HOD'}">
+                <div class="small text-muted px-3 mb-2">HOD MENU</div>
+                <a class="nav-link" th:classappend="${currentPage == 'hod-dashboard' ? 'active' : ''}"
+                   href="/hod/dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+
+            <!-- Admin Menu -->
+            <li th:if="${user.role.name() == 'ADMIN'}">
+                <div class="small text-muted px-3 mb-2">ADMIN MENU</div>
+                <a class="nav-link" th:classappend="${currentPage == 'admin-dashboard' ? 'active' : ''}"
+                   href="/admin/dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a class="nav-link" th:classappend="${currentPage == 'admin-grievances' ? 'active' : ''}"
+                   href="/admin/grievances">
+                    <i class="fas fa-list"></i> All Grievances
+                </a>
+            </li>
+        </ul>
+
+        <div class="position-absolute bottom-0 w-100 p-3 border-top bg-light">
+            <div class="small text-muted">
+                <i class="fas fa-circle text-success me-1" style="font-size: 8px;"></i>
+                System Online
+            </div>
+            <div class="small text-muted mt-1">
+                v2.0 | © 2024 University
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

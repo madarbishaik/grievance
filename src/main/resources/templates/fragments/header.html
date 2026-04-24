@@ -1,0 +1,52 @@
+<!-- templates/fragments/header.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<nav class="navbar" th:fragment="header">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/dashboard">
+            <i class="fas fa-university"></i>
+            <span>Grievance Portal</span>
+        </a>
+
+        <button class="navbar-toggler d-md-none" type="button" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="d-flex align-items-center gap-3">
+            <div class="dropdown">
+                <a class="text-dark text-decoration-none d-flex align-items-center gap-2"
+                   href="#" role="button" data-bs-toggle="dropdown">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 40px; height: 40px;">
+                        <span th:text="${#strings.substring(user.fullName, 0, 1)}">U</span>
+                    </div>
+                    <span class="d-none d-md-inline" th:text="${user.fullName}">User</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><h6 class="dropdown-header" th:text="${user.role}">Role</h6></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form th:action="@{/auth/logout}" method="post">
+                            <button type="submit" class="dropdown-item text-danger">
+                                <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('show');
+    }
+</script>
+</body>
+</html>
